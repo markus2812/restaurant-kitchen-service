@@ -22,16 +22,18 @@ class Dish(models.Model):
 
     class Meta:
         ordering = ("name", )
+        verbose_name = "Dish"
+        verbose_name_plural = "Dishes"
 
     def __str__(self):
         return f"{self.name}{self.price}"
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField()
+    years_of_experience = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ("username", )
+        ordering = ("username",)
 
     def __str__(self):
-        return f"{self.username} ({self.first_name} {self.last_name})"
+        return f"{self.first_name} ({self.username})"
