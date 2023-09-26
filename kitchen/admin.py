@@ -1,12 +1,17 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+
 from kitchen.models import Dish, DishType, Cook
 
 
 @admin.register(Cook)
-class CookAdmin(admin.ModelAdmin):
-    list_display = ("username", "first_name", "years_of_experience", "is_superuser")
+class CookAdmin(UserAdmin):
+    list_display = ("username", "first_name", "last_name", "years_of_experience", "is_staff")
     list_filter = ("years_of_experience", )
     search_fields = ("username", )
+    fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ("years_of_experience",)}),)
+    add_fieldsets = UserAdmin.add_fieldsets + (("Additional info", {"fields": ("first_name", "last_name",
+                                                                               "years_of_experience",)}),)
 
     verbose_name = "Cook"
     verbose_name_plural = "Cooks"
