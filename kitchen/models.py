@@ -7,7 +7,7 @@ class DishType(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        ordering = ("name", )
+        ordering = ("name",)
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Dish(models.Model):
     cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="dishes")
 
     class Meta:
-        ordering = ("name", )
+        ordering = ("name",)
         verbose_name = "Dish"
         verbose_name_plural = "Dishes"
 
