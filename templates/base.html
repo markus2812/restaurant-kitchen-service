@@ -16,31 +16,33 @@
     <div class="row">
         <div class="col-sm-3">
             {% block sidebar %}
-            <ul>
-                <li>
-                    <a href="{% url 'kitchen:index' %}"> Home</a>
-                </li>
-                <li>
-                    <a href="#"> All dishes</a>
-                </li>
-                <li>
-                     <a href="#"> All dish types</a>
-                </li>
-                <li>
-                    <a href="#"> All Cooks</a>
-                </li>
-            </ul>
-        </div>
+                <ul>
+                    <li>
+                        <a href="{% url 'kitchen:index' %}"> Home</a>
+                    </li>
+                    <li>
+                        <a href="#"> All dishes</a>
+                    </li>
+                    <li>
+                         <a href="#"> All dish types</a>
+                    </li>
+                    <li>
+                        <a href="#"> All Cooks</a>
+                    </li>
+                </ul>
+            </div>
         {% endblock %}
         <div class="col-sm-9">
-            <h1>Hello Mate!</h1>
-            <p>Welcome to the kitchen</p>
-            <h2>Kitchen information</h2>
-            <ul>
-                <li>Num of cook: {{num_of_cook}}</li>
-                <li>Num of dish: {{num_of_dish}}</li>
-                <li>Num of dish-type: {{num_of_dish_type}}</li>
-            </ul>
+            {% block content %}
+                <h1>Hello Mate!</h1>
+                <p>Welcome to the kitchen</p>
+                <h2>Kitchen information</h2>
+                <ul>
+                    <li>Num of cook: {{num_of_cook}}</li>
+                    <li>Num of dish: {{num_of_dish}}</li>
+                    <li>Num of dish-type: {{num_of_dish_type}}</li>
+                </ul>
+            {% endblock %}
         </div>
     </div>
 </div>
