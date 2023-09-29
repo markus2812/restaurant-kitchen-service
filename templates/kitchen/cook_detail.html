@@ -5,8 +5,11 @@
   <p><strong>Years of experience: </strong>{{ cook.years_of_experience }}</p>
   <div class="ml-3">
     <h2>Dishes: </h2>
+
     {% for dish in cook.dishes.all %}
       <li><a href="{{ dish.get_absolute_url }}">{{ dish.name }} ({{ dish.dish_type }})</li>
+      {% empty %}
+      <p>This chef has no dishes yet</p>
     {% endfor %}
   </div>
 {% endblock %}

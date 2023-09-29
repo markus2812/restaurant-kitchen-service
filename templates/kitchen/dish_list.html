@@ -1,14 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Dish List</h1>
-  <ul>
-    {% if dish_list %}
-      {% for dish in dish_list %}
-        <li><a href="{{ dish.get_absolute_url }}">{{ dish.name }} ({{ dish.dish_type }}, {{ dish.price }})</a></li>
-      {% empty %}
-        <p>There are no Dish in the Kitchen</p>
-      {% endfor %}
-    {% endif %}
-  </ul>
+  <h1>Dish List <a class="float-right" href="{% url 'kitchen:dish-create' %}">Create</a></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Dish Type</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if dish_list %}
+        {% for dish in dish_list %}
+          <tr>
+            <td>{{ dish.id }}</td>
+            <td><a href="{{ dish.get_absolute_url }}">{{ dish.name }}</a></td>
+            <td>{{ dish.price }}</td>
+            <td>{{ dish.dish_type }}</td>
+            <td><a href="{% url 'kitchen:dish-delete' dish.id %}">Delete</a></td>
+            <td><a href="{% url 'kitchen:dish-update' dish.id %}">Update</a></td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">There are no Dish in the Kitchen</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="6">There are no Dish in the Kitchen</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
 {% endblock %}

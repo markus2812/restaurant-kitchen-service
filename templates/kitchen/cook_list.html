@@ -1,14 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Cook List</h1>
-  <ul>
-    {% if cook_list %}
-      {% for cook in cook_list %}
-        <li><a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} ({{ cook.last_name }}, {{ cook.username }})</a></li>
-      {% empty %}
-        <p>There are no Cook in the Kitchen</p>
-      {% endfor %}
-    {% endif %}
-  </ul>
+  <h1>Cook List <a class="float-right" href="{% url 'kitchen:cook-create' %}">Create</a></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if cook_list %}
+        {% for cook in cook_list %}
+          <tr>
+            <td>{{ cook.id }}</td>
+            <td><a href="{% url 'kitchen:cook-detail' cook.id %}">{{ cook.username }}</a></td>
+            <td>{{ cook.first_name }}</td>
+            <td>{{ cook.last_name }}</td>
+            <td><a href="{% url 'kitchen:cook-delete' cook.id %}">Delete</a></td>
+            <td><a href="{% url 'kitchen:cook-update' cook.id %}">Update</a></td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">There are no Cooks in the Kitchen</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="6">There are no Cooks in the Kitchen</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
 {% endblock %}
