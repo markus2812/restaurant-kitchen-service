@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cook List</h1>
+  <ul>
+    {% if cook_list %}
+      {% for cook in cook_list %}
+        <li><a href="{{ cook.get_absolute_url }}">{{ cook.first_name }} ({{ cook.last_name }}, {{ cook.username }})</a></li>
+      {% empty %}
+        <p>There are no Cook in the Kitchen</p>
+      {% endfor %}
+    {% endif %}
+  </ul>
+{% endblock %}

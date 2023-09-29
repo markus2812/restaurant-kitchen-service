@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Chef: {{ cook.first_name }} {{ cook.last_name }} ({{ cook.username }})</h1>
+  <p><strong>Years of experience: </strong>{{ cook.years_of_experience }}</p>
+  <div class="ml-3">
+    <h2>Dishes: </h2>
+    {% for dish in cook.dishes.all %}
+      <li><a href="{{ dish.get_absolute_url }}">{{ dish.name }} ({{ dish.dish_type }})</li>
+    {% endfor %}
+  </div>
+{% endblock %}

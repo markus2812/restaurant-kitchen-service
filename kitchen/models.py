@@ -41,3 +41,6 @@ class Cook(AbstractUser):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"
+
+    def get_absolute_url(self):
+        return reverse("kitchen:cook-detail", args=[str(self.id)])
