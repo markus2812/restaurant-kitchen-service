@@ -1,9 +1,22 @@
 from django.urls import path
 
-from kitchen.views import (index, DishTypeListView, DishListView, DishDetailView, CookListView, CookDetailView, \
-                           DishTypeCreateView, DishCreateView, CookCreateView, DishTypeUpdateView, DishTypeDeleteView,
-                           DishUpdateView,
-                           DishDeleteView, CookUpdateView, CookDeleteView)
+from kitchen.views import (
+    index,
+    DishTypeListView,
+    DishListView,
+    DishDetailView,
+    CookListView,
+    CookDetailView,
+    DishTypeCreateView,
+    DishCreateView,
+    CookCreateView,
+    DishTypeUpdateView,
+    DishTypeDeleteView,
+    DishUpdateView,
+    DishDeleteView,
+    CookUpdateView,
+    CookDeleteView
+)
 
 urlpatterns = [
     path("", index, name="index"),

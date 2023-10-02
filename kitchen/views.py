@@ -105,10 +105,11 @@ class CookListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        form = CookSearchForm(self.request.GET)
-        if form.is_valid:
-            return self.queryset.filter(usernamename__icontains=form.cleaned_data["username"])
-        return self.queryset
+        queryset = Cook.objects.all()
+        username = self.request.GET.get("username")
+        if username:
+            return queryset.filter(username__icontains=username)
+        return queryset
 
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
@@ -132,7 +133,3 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     success_url = reverse_lazy("kitchen:cook-list")
     template_name = "kitchen/cook_confirm_delete.html"
-
-
-
-
