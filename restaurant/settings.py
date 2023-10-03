@@ -134,4 +134,4 @@ AUTH_USER_MODEL = "kitchen.Cook"
 
 LOGIN_REDIRECT_URL = "/kitchen/"
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap4"

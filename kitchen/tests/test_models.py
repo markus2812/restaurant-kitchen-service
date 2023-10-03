@@ -4,7 +4,6 @@ from kitchen.models import DishType, Dish, Cook
 
 
 class ModelTests(TestCase):
-
     def SetUp(self):
         self.cook = Cook.objects.create(
             username="test",
@@ -22,12 +21,12 @@ class ModelTests(TestCase):
             first_name="test_first",
             last_name="test_last",
         )
-        self.assertEqual(str(cook), f"{cook.first_name} {cook.last_name} ({cook.username})")
+        self.assertEqual(
+            str(cook), f"{cook.first_name} {cook.last_name} ({cook.username})"
+        )
 
     def test_dish_str(self):
-        dishtype = DishType.objects.create(
-            name="test"
-        )
+        dishtype = DishType.objects.create(name="test")
         dish = Dish.objects.create(
             name="test_name",
             description="test123",

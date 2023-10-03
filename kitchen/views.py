@@ -5,7 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CookCreationForm, DishCreateForm, DishSearchForm, CookSearchForm
+from .forms import (
+    CookCreationForm,
+    DishCreateForm,
+    DishSearchForm,
+    CookSearchForm
+)
 from .models import Cook, Dish, DishType
 
 
@@ -17,7 +22,7 @@ def index(request: HttpRequest) -> HttpResponse:
     context = {
         "num_of_cook": num_of_cook,
         "num_of_dish": num_of_dish,
-        "num_of_dish_type": num_of_dish_type
+        "num_of_dish_type": num_of_dish_type,
     }
     return render(request, "kitchen/index.html", context=context)
 
@@ -56,9 +61,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(DishListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = DishSearchForm(
-            initial={"name": name}
-        )
+        context["search_form"] = DishSearchForm(initial={"name": name})
         return context
 
     def get_queryset(self):
@@ -99,9 +102,7 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CookListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = CookSearchForm(
-            initial={"username": username}
-        )
+        context["search_form"] = CookSearchForm(initial={"username": username})
         return context
 
     def get_queryset(self):

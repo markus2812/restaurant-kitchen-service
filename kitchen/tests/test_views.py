@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 
 from kitchen.models import DishType, Cook, Dish
@@ -21,7 +21,7 @@ class PrivateDishTypeTest(TestCase):
             username="testusername",
             first_name="testfirstname",
             last_name="testlastname",
-            password="testpass"
+            password="testpass",
         )
         self.client.force_login(self.cook)
 
@@ -31,8 +31,14 @@ class PrivateDishTypeTest(TestCase):
         response = self.client.get(DISHT_TYPE_URL)
         self.assertEqual(response.status_code, 200)
         dish_types = DishType.objects.all()
-        self.assertEqual(list(response.context["dish_type_list"]), list(dish_types))
-        self.assertTemplateUsed(response, "kitchen/dish_type_list.html")
+        self.assertEqual(
+            list(response.context["dish_type_list"]),
+            list(dish_types)
+        )
+        self.assertTemplateUsed(
+            response,
+            "kitchen/dish_type_list.html"
+        )
 
 
 class PublicCookTest(TestCase):
@@ -47,34 +53,36 @@ class PrivateCookTest(TestCase):
             username="testusername",
             first_name="testfirstname",
             last_name="testlastname",
-            password="testpass"
+            password="testpass",
         )
         self.client.force_login(self.user)
-        self.cook = Cook.objects.create(username="user1",
-                                        years_of_experience=3
-                                        )
-        self.cook = Cook.objects.create(username="another_user",
-                                        years_of_experience=3
-                                        )
+        self.cook = Cook.objects.create(
+            username="user1",
+            years_of_experience=3
+        )
+        self.cook = Cook.objects.create(
+            username="another_user",
+            years_of_experience=3
+        )
 
-        self.cook = Cook.objects.create(username="test1",
-                                        first_name="test1",
-                                        last_name="test1",
-                                        years_of_experience=8
-                                        )
-        self.cook = Cook.objects.create(username="test3",
-                                        first_name="test3",
-                                        last_name="test3",
-                                        years_of_experience=15
-                                        )
+        self.cook = Cook.objects.create(
+            username="test1",
+            first_name="test1",
+            last_name="test1",
+            years_of_experience=8,
+        )
+        self.cook = Cook.objects.create(
+            username="test3",
+            first_name="test3",
+            last_name="test3",
+            years_of_experience=15,
+        )
 
     def test_retrieve_cook(self):
         response = self.client.get(COOK_URL)
         self.assertEqual(response.status_code, 200)
         cooks = Cook.objects.all()
-        self.assertEqual(list(response.context["cook_list"]),
-                         list(cooks)
-                         )
+        self.assertEqual(list(response.context["cook_list"]), list(cooks))
         self.assertTemplateUsed(response, "kitchen/cook_list.html")
 
     def test_cook_search_with_results(self):
@@ -105,12 +113,10 @@ class PrivateDishTest(TestCase):
             username="testusername",
             first_name="testfirstname",
             last_name="testlastname",
-            password="testpass"
+            password="testpass",
         )
         self.client.force_login(self.user)
-        dishtype = DishType.objects.create(
-            name="test"
-        )
+        dishtype = DishType.objects.create(name="test")
         self.dish1 = Dish.objects.create(
             name="test_name",
             description="test123",
@@ -134,9 +140,7 @@ class PrivateDishTest(TestCase):
         response = self.client.get(DISH_URL)
         self.assertEqual(response.status_code, 200)
         dishes = Dish.objects.all()
-        self.assertEqual(list(response.context["dish_list"]),
-                         list(dishes)
-                         )
+        self.assertEqual(list(response.context["dish_list"]), list(dishes))
         self.assertTemplateUsed(response, "kitchen/dish_list.html")
 
     def test_dish_search_with_results(self):

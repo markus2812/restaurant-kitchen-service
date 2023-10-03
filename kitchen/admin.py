@@ -6,12 +6,30 @@ from kitchen.models import Dish, DishType, Cook
 
 @admin.register(Cook)
 class CookAdmin(UserAdmin):
-    list_display = ("username", "first_name", "last_name", "years_of_experience", "is_staff")
-    list_filter = ("years_of_experience", )
-    search_fields = ("username", )
-    fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ("years_of_experience",)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + (("Additional info", {"fields": ("first_name", "last_name",
-                                                                               "years_of_experience",)}),)
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "years_of_experience",
+        "is_staff",
+    )
+    list_filter = ("years_of_experience",)
+    search_fields = ("username",)
+    fieldsets = UserAdmin.fieldsets + (
+        ("Additional info", {"fields": ("years_of_experience",)}),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (
+            "Additional info",
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "years_of_experience",
+                )
+            },
+        ),
+    )
 
     verbose_name = "Cook"
     verbose_name_plural = "Cooks"
@@ -20,8 +38,8 @@ class CookAdmin(UserAdmin):
 @admin.register(Dish)
 class DishAdmin(admin.ModelAdmin):
     list_display = ("name", "description", "price", "dish_type")
-    list_filter = ("dish_type", )
-    search_fields = ("name", )
+    list_filter = ("dish_type",)
+    search_fields = ("name",)
 
     verbose_name = "Dish"
     verbose_name_plural = "Dishes"
@@ -29,6 +47,5 @@ class DishAdmin(admin.ModelAdmin):
 
 @admin.register(DishType)
 class DishTypeAdmin(admin.ModelAdmin):
-    list_display = ("name", )
-    search_fields = ("name", )
-
+    list_display = ("name",)
+    search_fields = ("name",)

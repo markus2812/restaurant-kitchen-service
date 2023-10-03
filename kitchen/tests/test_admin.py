@@ -7,8 +7,7 @@ class AdminSiteTests(TestCase):
     def setUp(self) -> None:
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
-            username="admin",
-            password="testadmin"
+            username="admin", password="testadmin"
         )
         self.client.force_login(self.admin_user)
         self.cook = get_user_model().objects.create_user(
