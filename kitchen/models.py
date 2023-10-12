@@ -40,7 +40,7 @@ class Cook(AbstractUser):
     years_of_experience = models.IntegerField(default=0)
 
     class Meta:
-        ordering = ("username",)
+        ordering = ("id",)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.username})"

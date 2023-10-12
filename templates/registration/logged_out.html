@@ -1,7 +1,32 @@
-{% extends "base.html" %}
+{% extends "base_sections.html" %}
+{% load static %}
 
 {% block content %}
-<p>Logged out!</p>
-
-<a href="{% url 'login'%}">Click here to login again.</a>
+<section>
+  <div class="page-header min-vh-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+          <div class="card card-plain">
+            <div class="card-header pb-0 text-left">
+              <h4 class="font-weight-bolder">Logged Out</h4>
+              <p class="mb-0">You have been successfully logged out.</p>
+              <p>You can <a href="{% url 'login' %}" class="text-primary text-gradient font-weight-bold">sign in</a> again if you wish.</p>
+              <p>Or you can <a href="{% url 'kitchen:index' %}" class="text-primary text-gradient font-weight-bold">continue without registration</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+          <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center">
+            <img src="{% static 'img/shapes/pattern-lines.svg' %}" alt="pattern-lines" class="position-absolute opacity-4 start-0">
+            <div class="position-relative">
+            </div>
+            <h4 class="mt-5 text-white font-weight-bolder">Welcome to our restaurant!</h4>
+            <p class="text-white">A good meal is always a good idea.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

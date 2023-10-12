@@ -1,10 +1,13 @@
-{% extends "base.html" %}
+{% extends "base_sections.html" %}
 
 {% block content %}
-  <h1>Delete {{ dishtype.name }}?</h1>
-  <p>Are you sure you want to delete the dish type: {{ dishtype.name }}?</p>
-  <form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes" class="btn btn-danger">
-  </form>
+  <div class="container">
+    <h1>Delete {{ dishtype.name }}?</h1>
+    <p>Are you sure you want to delete the dish type: {{ dishtype.name }}?</p>
+    <form action="" method="post" class="needs-validation">
+      {% csrf_token %}
+      <input type="submit" value="Yes" class="btn btn-danger">
+      <a href="{% url 'kitchen:dish-type-list' %}" class="btn btn-secondary">No</a>
+    </form>
+  </div>
 {% endblock %}
