@@ -1,0 +1,25 @@
+{% extends "base_sections.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+  <title>{{ object|yesno:"Update,Create" }} {{ dish.name }}</title>
+{% endblock %}
+
+{% block header %}
+
+    {% include 'includes/sidebar.html' %}
+
+{% endblock header %}
+
+{% block content %}
+  <div class="container mt-8">
+    <h1 class="text-center">{{ object|yesno:"Update,Create" }} {{ dish.name }}</h1>
+    <form action="" method="post" novalidate class="needs-validation">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form|crispy }}
+      </div>
+      <input type="submit" value="Confirm" class="btn btn-primary">
+    </form>
+  </div>
+{% endblock %}

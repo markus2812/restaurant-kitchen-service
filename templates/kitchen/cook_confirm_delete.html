@@ -1,0 +1,13 @@
+{% extends "base_sections.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Delete {{ cook.username }}?</h1>
+    <p>Are you sure you want to delete a cook: {{ cook.first_name }} {{ cook.last_name }}?</p>
+    <form action="" method="post" class="needs-validation">
+      {% csrf_token %}
+      <input type="submit" value="Yes" class="btn btn-danger">
+      <a href="{% url 'kitchen:cook-list' %}" class="btn btn-secondary">No</a>
+    </form>
+  </div>
+{% endblock %}
